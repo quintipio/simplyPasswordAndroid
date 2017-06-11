@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simply Password</string>
+    <string name="chargerText">Charger</string>
+    <string name="dechiffrerText">Déchiffrer</string>
+    <string name="motDePasseText">Mot de passe du fichier :</string>
+    <string name="erreur_dechiffrement">Erreur lors du déchiffrement du fichier</string>
+    <string name="erreur_mauvais_mdp">Mauvais mot de passe</string>
+</resources>
