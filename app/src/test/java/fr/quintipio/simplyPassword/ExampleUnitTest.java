@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword;
+package fr.quintipio.simplyPassword;
 
 import org.junit.Test;
 

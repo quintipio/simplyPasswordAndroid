@@ -1,9 +1,9 @@
-package fr.quintipio.simplypassword.business;
+package fr.quintipio.simplyPassword.business;
 
-import fr.quintipio.simplypassword.com.ComFile;
-import fr.quintipio.simplypassword.model.Dossier;
-import fr.quintipio.simplypassword.util.CryptUtils;
-import fr.quintipio.simplypassword.util.ObjectUtils;
+import fr.quintipio.simplyPassword.com.ComFile;
+import fr.quintipio.simplyPassword.model.Dossier;
+import fr.quintipio.simplyPassword.util.CryptUtils;
+import fr.quintipio.simplyPassword.util.ObjectUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

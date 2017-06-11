@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword.util;
+package fr.quintipio.simplyPassword.util;
 
 import java.io.IOException;
 import java.io.InputStream;

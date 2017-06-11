@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword.contexte;
+package fr.quintipio.simplyPassword.contexte;
 
 public class ContexteAppli {
 

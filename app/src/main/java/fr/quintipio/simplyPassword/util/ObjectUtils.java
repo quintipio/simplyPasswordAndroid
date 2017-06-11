@@ -1,6 +1,6 @@
-package fr.quintipio.simplypassword.util;
+package fr.quintipio.simplyPassword.util;
 
-import fr.quintipio.simplypassword.model.MotDePasse;
+import fr.quintipio.simplyPassword.model.MotDePasse;
 
 import java.io.*;
 

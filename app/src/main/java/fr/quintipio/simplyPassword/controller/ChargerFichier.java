@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword.controller;
+package fr.quintipio.simplyPassword.controller;
 
 import android.Manifest;
 import android.app.Activity;
@@ -15,10 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
-import fr.quintipio.simplypassword.R;
-import fr.quintipio.simplypassword.business.PasswordBusiness;
-import fr.quintipio.simplypassword.contexte.ContexteAppli;
-import fr.quintipio.simplypassword.util.CryptUtils;
+import fr.quintipio.simplyPassword.R;
+import fr.quintipio.simplyPassword.business.PasswordBusiness;
+import fr.quintipio.simplyPassword.contexte.ContexteAppli;
+import fr.quintipio.simplyPassword.util.CryptUtils;
 
 import java.util.ArrayList;
 

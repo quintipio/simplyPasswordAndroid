@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword.com;
+package fr.quintipio.simplyPassword.com;
 
 
 import java.io.File;

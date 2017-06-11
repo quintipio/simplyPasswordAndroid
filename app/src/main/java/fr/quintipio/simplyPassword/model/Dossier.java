@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword.model;
+package fr.quintipio.simplyPassword.model;
 
 
 import java.io.Serializable;

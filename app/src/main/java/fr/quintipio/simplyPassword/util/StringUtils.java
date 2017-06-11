@@ -1,4 +1,4 @@
-package fr.quintipio.simplypassword.util;
+package fr.quintipio.simplyPassword.util;
 
 public class StringUtils {
 
