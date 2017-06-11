@@ -2,8 +2,8 @@ package fr.quintipio.simplypassword.controller;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,13 +16,15 @@ import android.widget.TextView;
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
 import fr.quintipio.simplypassword.R;
-import fr.quintipio.simplypassword.business.ParamBusiness;
 import fr.quintipio.simplypassword.business.PasswordBusiness;
+import fr.quintipio.simplypassword.contexte.ContexteAppli;
 import fr.quintipio.simplypassword.util.CryptUtils;
 
 import java.util.ArrayList;
 
 public class ChargerFichier extends AppCompatActivity {
+
+    private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,15 @@ public class ChargerFichier extends AppCompatActivity {
                 return true;
             }
         });
+
+        SharedPreferences settings = getSharedPreferences(ContexteAppli.sharedPrefKey, 0);
+        path = settings.getString(ContexteAppli.filePrefKey, null);
+
+        if (path != null) {
+            TextView cheminText = (TextView) findViewById(R.id.fileTextView);
+            cheminText.setText(path);
+            findViewById(R.id.MotDePasseFrame).setVisibility(1);
+        }
     }
 
     /**
@@ -91,11 +102,11 @@ public class ChargerFichier extends AppCompatActivity {
                 TextView cheminText = (TextView) findViewById(R.id.fileTextView);
                 cheminText.setText(docPaths.get(0));
                 findViewById(R.id.MotDePasseFrame).setVisibility(1);
-                ParamBusiness.setFilePath(docPaths.get(0));
+                path = docPaths.get(0);
             }
             else {
                 findViewById(R.id.MotDePasseFrame).setVisibility(0);
-                ParamBusiness.setFilePath("");
+                path = "";
             }
         }
     }
@@ -108,8 +119,14 @@ public class ChargerFichier extends AppCompatActivity {
         TextView erreur = (TextView) findViewById(R.id.ErreurTextView);
         String mdp = motDePasseTextBox.getText().toString();
         try {
-            PasswordBusiness.charger(mdp);
+            PasswordBusiness.charger(mdp,path);
             erreur.setText("");
+
+            SharedPreferences settings = getSharedPreferences(ContexteAppli.sharedPrefKey, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(ContexteAppli.filePrefKey,path);
+            editor.commit();
+
         }
         catch(CryptUtils.InvalidPasswordException ex) {
             erreur.setText(R.string.erreur_mauvais_mdp);

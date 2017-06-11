@@ -32,7 +32,8 @@ public class ObjectUtils {
     public static Object deserialize(byte[] data) throws IOException, ClassNotFoundException {
         ByteArrayInputStream in = new ByteArrayInputStream(data);
         ObjectInputStream is = new ObjectInputStream(in);
-        return is.readObject();
+        Object toto = is.readObject();
+        return toto;
     }
     
     /**
