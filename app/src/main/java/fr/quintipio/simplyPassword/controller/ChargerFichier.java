@@ -20,6 +20,7 @@ import fr.quintipio.simplyPassword.business.PasswordBusiness;
 import fr.quintipio.simplyPassword.contexte.ContexteAppli;
 import fr.quintipio.simplyPassword.util.CryptUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ChargerFichier extends AppCompatActivity {
@@ -57,9 +58,11 @@ public class ChargerFichier extends AppCompatActivity {
         path = settings.getString(ContexteAppli.filePrefKey, null);
 
         if (path != null) {
-            TextView cheminText = (TextView) findViewById(R.id.fileTextView);
-            cheminText.setText(path);
-            findViewById(R.id.MotDePasseFrame).setVisibility(1);
+            if(new File(path).exists()) {
+                TextView cheminText = (TextView) findViewById(R.id.fileTextView);
+                cheminText.setText(path);
+                findViewById(R.id.MotDePasseFrame).setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -70,10 +73,8 @@ public class ChargerFichier extends AppCompatActivity {
 
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                // Explain to the user why we need to read the contacts
             }
             int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
-            // MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE is an app-defined int constant that should be quite unique
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         }
         String[] fileType = {".spj"};
@@ -101,11 +102,11 @@ public class ChargerFichier extends AppCompatActivity {
             if(docPaths.get(0).endsWith(".spj")) {
                 TextView cheminText = (TextView) findViewById(R.id.fileTextView);
                 cheminText.setText(docPaths.get(0));
-                findViewById(R.id.MotDePasseFrame).setVisibility(1);
+                findViewById(R.id.MotDePasseFrame).setVisibility(View.VISIBLE);
                 path = docPaths.get(0);
             }
             else {
-                findViewById(R.id.MotDePasseFrame).setVisibility(0);
+                findViewById(R.id.MotDePasseFrame).setVisibility(View.INVISIBLE);
                 path = "";
             }
         }
@@ -126,6 +127,9 @@ public class ChargerFichier extends AppCompatActivity {
             SharedPreferences.Editor editor = settings.edit();
             editor.putString(ContexteAppli.filePrefKey,path);
             editor.commit();
+
+            Intent listeMdp = new Intent(this, ListeMotDePasse.class);
+            startActivity(listeMdp);
 
         }
         catch(CryptUtils.InvalidPasswordException ex) {
