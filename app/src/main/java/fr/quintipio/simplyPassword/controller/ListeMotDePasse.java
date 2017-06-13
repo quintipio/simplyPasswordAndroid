@@ -1,5 +1,6 @@
 package fr.quintipio.simplyPassword.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -105,10 +106,21 @@ public class ListeMotDePasse extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 MotDePasse item =(MotDePasse) adapterView.getItemAtPosition(i);
+                openMotDePasse(item);
             }
         });
         if(changeSelectedDossier) {
             selectedDossier = dossier;
         }
+    }
+
+    /**
+     * Ouvre l'activité d'un mot de passe
+     * @param mdp le mot de passe à ouvrir
+     */
+    public void openMotDePasse(MotDePasse mdp) {
+        Intent consulterMdp = new Intent(this, ConsulterMotDePasse.class);
+        consulterMdp.putExtra("mdp",mdp);
+        startActivity(consulterMdp);
     }
 }
