@@ -77,13 +77,15 @@ public class ChargerFichier extends AppCompatActivity {
             int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         }
-        String[] fileType = {".spj"};
-        ArrayList<String> listeFormat = new ArrayList<>();
-        listeFormat.add(".spj");
-        FilePickerBuilder.getInstance().setMaxCount(10)
-                .setActivityTheme(R.style.AppTheme)
-                .addFileSupport("SPJ",fileType)
-                .pickFile(this);
+        else {
+            String[] fileType = {".spj"};
+            ArrayList<String> listeFormat = new ArrayList<>();
+            listeFormat.add(".spj");
+            FilePickerBuilder.getInstance().setMaxCount(10)
+                    .setActivityTheme(R.style.AppTheme)
+                    .addFileSupport("SPJ",fileType)
+                    .pickFile(this);
+        }
     }
 
     /**
