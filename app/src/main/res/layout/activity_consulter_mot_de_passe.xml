@@ -14,29 +14,24 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_alignParentTop="true"
-            android:id="@+id/titreTextView" android:layout_alignParentEnd="true"
+            android:id="@+id/consulterMdpTitreTextView" android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true" android:textAlignment="center" android:textStyle="normal|bold"
             android:textAllCaps="false" android:textSize="24sp"/>
     <TextView
             android:text="@string/LoginText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_below="@+id/titreTextView"
+            android:layout_height="wrap_content" android:layout_below="@+id/consulterMdpTitreTextView"
             android:layout_alignParentStart="true" android:layout_marginTop="44dp" android:id="@+id/textLoginTextView"/>
     <TextView
-            android:id="@+id/loginTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textLoginTextView"
-            android:layout_below="@+id/titreTextView"
-            android:layout_alignBaseline="@+id/textLoginTextView"
-            android:layout_alignParentEnd="true"/>
-    <Button
-            android:text="@string/copierLoginText"
+            android:id="@+id/consulterMdpLoginTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/copyLoginButton"
-            android:layout_below="@+id/textLoginTextView" android:layout_toEndOf="@+id/textLoginTextView"
-            android:layout_marginTop="16dp"/>
+            android:layout_below="@+id/consulterMdpTitreTextView"
+            android:layout_alignBaseline="@+id/textLoginTextView"
+            android:layout_alignParentEnd="true" android:text="testù" android:textColor="@android:color/black"
+            android:textAlignment="center" android:textStyle="normal|bold"
+            android:layout_toEndOf="@+id/textCommentaireTextView"/>
+
     <TextView
             android:text="@string/motDePasseBis"
             android:layout_width="wrap_content"
@@ -46,16 +41,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:id="@+id/textView5"
+            android:id="@+id/consulterMdpMdpTextView"
             android:layout_toRightOf="@+id/textMdpTextView"
             android:layout_below="@+id/copyLoginButton"
             android:layout_alignBaseline="@+id/textMdpTextView"
-            android:layout_alignParentEnd="true"/>
-    <Button
-            android:text="@string/copierMdpText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_below="@+id/textView5"
-            android:layout_centerHorizontal="true" android:layout_marginTop="16dp" android:id="@+id/copyMdpButton"/>
+            android:layout_alignParentEnd="true" android:text="test" android:textStyle="normal|bold"
+            android:textAlignment="center" android:textColor="@android:color/black"/>
     <TextView
             android:text="@string/siteWebText"
             android:layout_width="wrap_content"
@@ -63,11 +54,12 @@
             android:layout_alignParentStart="true" android:layout_marginTop="21dp" android:id="@+id/textWebTextView"/>
     <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/siteWebTextView"
-            android:layout_toRightOf="@+id/textWebTextView"
+            android:layout_height="wrap_content" android:id="@+id/consulterMdpSiteTextView"
             android:layout_below="@+id/copyMdpButton"
             android:layout_alignBaseline="@+id/textWebTextView"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true" android:textStyle="normal|bold" android:textAlignment="center"
+            android:textColor="@android:color/black" android:text="test"
+            android:layout_alignStart="@+id/copyLoginButton"/>
     <TextView
             android:text="@string/commentaireText"
             android:layout_width="wrap_content"
@@ -76,11 +68,31 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/commentaireTextView"
-            android:layout_toRightOf="@+id/textCommentaireTextView"
-            android:layout_below="@+id/copyMdpButton"
+            android:id="@+id/consulterMdpCommentaireTextView"
+            android:textAlignment="center" android:textStyle="normal|bold"
+            android:textColor="@android:color/black" android:text="test"
             android:layout_alignBaseline="@+id/textCommentaireTextView"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignBottom="@+id/textCommentaireTextView" android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/consulterMdpMdpTextView"/>
+    <Button
+            android:text="@string/copierLoginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/copyLoginButton"
+            android:layout_below="@+id/consulterMdpLoginTextView" android:layout_toEndOf="@+id/textLoginTextView"
+            android:layout_marginTop="15dp"/>
+    <CheckBox
+            android:text="@string/afficherMdpText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/afficherMotDePasseCheckBox"
+            android:layout_below="@+id/textMdpTextView" android:layout_alignParentStart="true"/>
+    <Button
+            android:text="@string/copierMdpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/copyMdpButton"
+            android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

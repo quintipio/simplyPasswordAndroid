@@ -14,6 +14,7 @@ import fr.quintipio.simplyPassword.model.Dossier;
 import fr.quintipio.simplyPassword.model.MotDePasse;
 import fr.quintipio.simplyPassword.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListeMotDePasse extends AppCompatActivity {
@@ -84,34 +85,34 @@ public class ListeMotDePasse extends AppCompatActivity {
         ImageButton dossierParent = (ImageButton) findViewById(R.id.parentFolderImageButton);
         dossierParent.setVisibility(dossier.getDossierParent() != null? View.VISIBLE: View.INVISIBLE);
 
-        //Chargement de la liste des dossiers
         ListView dossierList = (ListView) findViewById(R.id.folderListView);
-        FolderAdapter adapter = new FolderAdapter(ListeMotDePasse.this, dossier.getSousDossier());
-        dossierList.setAdapter(adapter);
+        ListView mdpList = (ListView) findViewById(R.id.mdpListView);
 
-        dossierList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Dossier item =(Dossier) adapterView.getItemAtPosition(i);
-                chargerDossier(item,true);
-            }
-        });
+        //Chargement de la liste des dossiers
+            FolderAdapter adapter = new FolderAdapter(ListeMotDePasse.this,(dossier.getSousDossier() != null && dossier.getSousDossier().size() > 0)? dossier.getSousDossier():new ArrayList<Dossier>());
+            dossierList.setAdapter(adapter);
 
+            dossierList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Dossier item = (Dossier) adapterView.getItemAtPosition(i);
+                    chargerDossier(item, true);
+                }
+            });
 
         //Chargement de la liste des mots de passe
-        ListView mdpList = (ListView) findViewById(R.id.mdpListView);
-        MotDePasseAdapter mdpAdapter = new MotDePasseAdapter(ListeMotDePasse.this, dossier.getListeMotDePasse());
-        mdpList.setAdapter(mdpAdapter);
-        mdpList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MotDePasse item =(MotDePasse) adapterView.getItemAtPosition(i);
-                openMotDePasse(item);
+        MotDePasseAdapter mdpAdapter = new MotDePasseAdapter(ListeMotDePasse.this,(dossier.getListeMotDePasse() != null && dossier.getListeMotDePasse().size() > 0) ? dossier.getListeMotDePasse():new ArrayList<MotDePasse>());
+            mdpList.setAdapter(mdpAdapter);
+            mdpList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    MotDePasse item =(MotDePasse) adapterView.getItemAtPosition(i);
+                    openMotDePasse(item);
+                }
+            });
+            if(changeSelectedDossier) {
+                selectedDossier = dossier;
             }
-        });
-        if(changeSelectedDossier) {
-            selectedDossier = dossier;
-        }
     }
 
     /**

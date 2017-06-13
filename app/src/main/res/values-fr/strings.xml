@@ -13,4 +13,5 @@
     <string name="siteWebText">Site web :</string>
     <string name="copierLoginText">Copier le login en mémoire</string>
     <string name="copierMdpText">Copier le mot de passe en mémoire</string>
+    <string name="afficherMdpText">Afficher le mot de passe</string>
 </resources>

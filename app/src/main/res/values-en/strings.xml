@@ -13,4 +13,5 @@
     <string name="siteWebText">Website :</string>
     <string name="copierLoginText">Copy login into clipboard</string>
     <string name="copierMdpText">Copy password into clipboard</string>
+    <string name="afficherMdpText">Show the password</string>
 </resources>
