@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "fr.quintpio.simplyPassword"
         minSdkVersion 23
@@ -23,6 +24,7 @@ repositories {
     maven {
         url "https://jitpack.io"
     }
+    mavenCentral()
 }
 
 dependencies {
@@ -32,4 +34,5 @@ dependencies {
     })
     compile 'com.droidninja:filepicker:2.0.4'
     testCompile 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
