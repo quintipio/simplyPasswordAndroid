@@ -5,34 +5,13 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
-/**
- * Classe pour gérer un fichier
- */
-class ComFile
-/**
- * Constructeur du fichier
- * @param path le chemin du fichier
- */
-(path: String) {
+class ComFile(path: String) {
 
-    /**
-     * Le fichier utilisé
-     */
-    /**
-     * Getter du fichier
-     * @return le fichier
-     */
     val file: File
-
     init {
         this.file = File(path)
     }
 
-    /**
-     * Ecrit un String dans un fichier
-     * @param data les donénes à écrire
-     * @return true si ok
-     */
     fun writeString(data: String): Boolean {
         try {
             val stream = FileOutputStream(file)
@@ -45,11 +24,6 @@ class ComFile
 
     }
 
-    /**
-     * Ecrit un byte[] dans un fichier
-     * @param data
-     * @return true si ok
-     */
     fun writeBytes(data: ByteArray): Boolean {
         try {
             val stream = FileOutputStream(file)
@@ -62,10 +36,6 @@ class ComFile
 
     }
 
-    /**
-     * Lit une chaine de caractère dans un fichier
-     * @return la chaine de caractère
-     */
     fun readString(): String? {
         try {
             val length = file.length().toInt()
@@ -86,10 +56,6 @@ class ComFile
 
     }
 
-    /**
-     * Lit un byte[] dans un fichier
-     * @return la chaine de caractère
-     */
     fun readBytes(): ByteArray? {
         try {
             val length = file.length().toInt()

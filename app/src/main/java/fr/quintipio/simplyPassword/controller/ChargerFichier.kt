@@ -20,6 +20,7 @@ import fr.quintipio.simplyPassword.R
 import fr.quintipio.simplyPassword.business.PasswordBusiness
 import fr.quintipio.simplyPassword.contexte.ContexteAppli
 import fr.quintipio.simplyPassword.util.CryptUtils
+import fr.quintipio.simplyPassword.util.InvalidPasswordException
 
 import java.io.File
 import java.util.ArrayList
@@ -105,7 +106,7 @@ class ChargerFichier : AppCompatActivity() {
         val erreur = findViewById(R.id.ErreurTextView) as TextView
         val mdp = motDePasseTextBox.text.toString()
         try {
-            PasswordBusiness.charger(mdp, path!!)
+            PasswordBusiness.load(mdp, path!!)
             erreur.text = ""
 
             val settings = getSharedPreferences(ContexteAppli.sharedPrefKey, 0)
@@ -116,7 +117,7 @@ class ChargerFichier : AppCompatActivity() {
             val listeMdp = Intent(this, ListeMotDePasse::class.java)
             startActivity(listeMdp)
 
-        } catch (ex: CryptUtils.InvalidPasswordException) {
+        } catch (ex: InvalidPasswordException) {
             erreur.setText(R.string.erreur_mauvais_mdp)
         } catch (e: Exception) {
             erreur.setText(R.string.erreur_dechiffrement)
