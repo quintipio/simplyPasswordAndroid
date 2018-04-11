@@ -10,7 +10,7 @@ object ContexteAppli {
     /**
      * Numéro de version
      */
-    val version = "1.1"
+    val version = "1.3"
 
     /**
      * Nom du développeur

@@ -4,10 +4,8 @@ import fr.quintipio.simplyPassword.com.ComFile
 import fr.quintipio.simplyPassword.model.Dossier
 import fr.quintipio.simplyPassword.model.MotDePasse
 import fr.quintipio.simplyPassword.util.CryptUtils
-import fr.quintipio.simplyPassword.util.StringUtils
 import java.io.*
-
-import java.util.ArrayList
+import java.util.*
 import javax.xml.bind.JAXBContext
 import javax.xml.bind.Marshaller
 
@@ -22,7 +20,7 @@ object PasswordBusiness {
     var fichier: ComFile? = null
         private set
 
-    private  var motDePasse: String = ""
+    private var motDePasse: String = ""
 
     private var modif: Boolean = false
 
@@ -79,19 +77,11 @@ object PasswordBusiness {
 
 
     /**
-     * Vérifie si un fichier existe bien
-     * @return true si ok
-     */
-    fun isFichier(): Boolean {
-        return fichier != null && !StringUtils.isEmpty(fichier?.file?.path)
-    }
-
-    /**
      * Vérifie si un mot de passe existe bien
      * @return true si ok
      */
     fun isMotDePasse(): Boolean {
-        return !StringUtils.isEmpty(motDePasse)
+        return !this.motDePasse.isBlank()
     }
 
 
@@ -113,17 +103,17 @@ object PasswordBusiness {
      */
     fun recherche(recherche: String, dossier: Dossier): List<MotDePasse> {
         val retour = ArrayList<MotDePasse>()
-        if (dossier.listeMotDePasse != null && dossier.listeMotDePasse!!.size > 0) {
-            for (mdp in dossier.listeMotDePasse!!) {
-                if (mdp.login!!.toLowerCase().contains(recherche.toLowerCase()) ||
-                        mdp.commentaire!!.toLowerCase().contains(recherche.toLowerCase()) ||
-                        mdp.titre!!.toLowerCase().contains(recherche.toLowerCase())) {
+        if (dossier.listeMotDePasse.isNotEmpty()) {
+            for (mdp in dossier.listeMotDePasse) {
+                if (mdp.login.toLowerCase().contains(recherche.toLowerCase()) ||
+                        mdp.commentaire.toLowerCase().contains(recherche.toLowerCase()) ||
+                        mdp.titre.toLowerCase().contains(recherche.toLowerCase())) {
                     retour.add(mdp)
                 }
             }
         }
-        if (dossier.sousDossier != null && dossier.sousDossier!!.size > 0) {
-            for (dos in dossier.sousDossier!!) {
+        if (dossier.sousDossier.isNotEmpty()) {
+            for (dos in dossier.sousDossier) {
                 retour.addAll(recherche(recherche, dos))
             }
         }

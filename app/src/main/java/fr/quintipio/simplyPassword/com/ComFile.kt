@@ -7,10 +7,8 @@ import java.io.FileOutputStream
 
 class ComFile(path: String) {
 
-    val file: File
-    init {
-        this.file = File(path)
-    }
+    val file = File(path)
+
 
     fun writeString(data: String): Boolean {
         try {
@@ -25,50 +23,46 @@ class ComFile(path: String) {
     }
 
     fun writeBytes(data: ByteArray): Boolean {
-        try {
+        return try {
             val stream = FileOutputStream(file)
             stream.write(data)
             stream.close()
-            return true
+            true
         } catch (e: Exception) {
-            return false
+            false
         }
 
     }
 
-    fun readString(): String? {
-        try {
+    fun readString(): String {
+        return try {
             val length = file.length().toInt()
 
             val bytes = ByteArray(length)
 
-            val `in` = FileInputStream(file)
-            try {
-                `in`.read(bytes)
-            } finally {
-                `in`.close()
+            val ind = FileInputStream(file)
+            ind.use { ind ->
+                ind.read(bytes)
             }
 
-            return String(bytes)
+            String(bytes)
         } catch (e: Exception) {
-            return null
+            ""
         }
 
     }
 
     fun readBytes(): ByteArray? {
-        try {
+        return try {
             val length = file.length().toInt()
             val bytes = ByteArray(length)
-            val `in` = FileInputStream(file)
-            try {
-                `in`.read(bytes)
-            } finally {
-                `in`.close()
+            val ind = FileInputStream(file)
+            ind.use { ind ->
+                ind.read(bytes)
             }
-            return bytes
+            bytes
         } catch (e: Exception) {
-            return null
+            null
         }
 
     }

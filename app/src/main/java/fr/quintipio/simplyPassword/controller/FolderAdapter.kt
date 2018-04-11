@@ -9,7 +9,7 @@ import android.widget.TextView
 import fr.quintipio.simplyPassword.R
 import fr.quintipio.simplyPassword.model.Dossier
 
-class FolderAdapter(context: Context, dossiers: List<Dossier>) : ArrayAdapter<Dossier>(context, 0, dossiers) {
+class FolderAdapter(context: Context, dossiers: MutableList<Dossier>) : ArrayAdapter<Dossier>(context, 0, dossiers) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var convertView = convertView

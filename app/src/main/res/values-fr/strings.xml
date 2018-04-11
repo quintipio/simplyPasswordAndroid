@@ -7,6 +7,7 @@
     <string name="erreur_dechiffrement">Erreur lors du déchiffrement du fichier</string>
     <string name="erreur_mauvais_mdp">Mauvais mot de passe</string>
     <string name="recherchertext">Recherher</string>
+    <string name="dossierRacineText">Dossier Racine</string>
     <string name="LoginText">Identifiants :</string>
     <string name="commentaireText">Commentaire :</string>
     <string name="motDePasseBis">Mot de passe :</string>

@@ -7,6 +7,7 @@
     <string name="erreur_dechiffrement">Error during deciphering the file</string>
     <string name="erreur_mauvais_mdp">Wrong password</string>
     <string name="recherchertext">Search</string>
+    <string name="dossierRacineText">Root folder</string>
     <string name="LoginText">Login :</string>
     <string name="commentaireText">Comment :</string>
     <string name="motDePasseBis">Password :</string>
