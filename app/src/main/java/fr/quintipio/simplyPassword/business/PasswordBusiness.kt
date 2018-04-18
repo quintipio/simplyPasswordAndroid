@@ -101,7 +101,7 @@ object PasswordBusiness {
      * @param dossier le dossier dans lequel effectuer la recherche
      * @return les résultats
      */
-    fun recherche(recherche: String, dossier: Dossier): List<MotDePasse> {
+    fun recherche(recherche: String, dossier: Dossier): MutableList<MotDePasse> {
         val retour = ArrayList<MotDePasse>()
         if (dossier.listeMotDePasse.isNotEmpty()) {
             for (mdp in dossier.listeMotDePasse) {

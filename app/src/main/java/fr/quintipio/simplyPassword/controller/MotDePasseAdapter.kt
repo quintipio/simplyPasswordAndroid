@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import fr.quintipio.simplyPassword.R
-import fr.quintipio.simplyPassword.controller.MotDePasseAdapter.MotDePasseViewHolder
 import fr.quintipio.simplyPassword.model.MotDePasse
 
 class MotDePasseAdapter(context: Context, mdps: List<MotDePasse>) : ArrayAdapter<MotDePasse>(context, 0, mdps) {
@@ -22,7 +21,7 @@ class MotDePasseAdapter(context: Context, mdps: List<MotDePasse>) : ArrayAdapter
         var viewHolder: MotDePasseViewHolder? = convertView!!.tag as MotDePasseViewHolder
         if (viewHolder == null) {
             viewHolder = MotDePasseViewHolder()
-            viewHolder!!.titre = convertView.findViewById(R.id.titreMdp)
+            viewHolder.titre = convertView.findViewById(R.id.titreMdp)
             viewHolder.login = convertView.findViewById(R.id.loginMdp)
             convertView.tag = viewHolder
         }

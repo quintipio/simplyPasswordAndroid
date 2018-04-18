@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support.test:rules-0.5">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/res" />
+      <root url="jar://$PROJECT_DIR$/../../CONF/gradle/caches/transforms-1/files-1.1/rules-0.5.aar/9483bb00d80f13700b14344c66b65edd/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../CONF/gradle/caches/transforms-1/files-1.1/rules-0.5.aar/9483bb00d80f13700b14344c66b65edd/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/Logiciel/Android/sdk1/extras/android/m2repository/com/android/support/test/rules/0.5/rules-0.5-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SDK/ANDROID/extras/android/m2repository/com/android/support/test/rules/0.5/rules-0.5-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/Logiciel/Android/sdk1/extras/android/m2repository/com/android/support/test/rules/0.5/rules-0.5-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SDK/ANDROID/extras/android/m2repository/com/android/support/test/rules/0.5/rules-0.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

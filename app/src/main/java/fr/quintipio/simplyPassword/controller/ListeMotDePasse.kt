@@ -12,7 +12,7 @@ import fr.quintipio.simplyPassword.R
 import fr.quintipio.simplyPassword.business.PasswordBusiness
 import fr.quintipio.simplyPassword.model.Dossier
 import fr.quintipio.simplyPassword.model.MotDePasse
-import fr.quintipio.simplyPassword.util.StringUtils
+import kotlinx.android.synthetic.main.activity_liste_mot_de_passe.*
 
 import java.util.ArrayList
 
@@ -24,15 +24,13 @@ class ListeMotDePasse : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_liste_mot_de_passe)
 
-        val dossierparentButton = findViewById(R.id.parentFolderImageButton) as ImageButton
-        dossierparentButton.setOnClickListener {
-            if (selectedDossier != null && selectedDossier!!.dossierParent != null) {
+        parentFolderImageButton.setOnClickListener {
+            if (selectedDossier?.dossierParent != null) {
                 chargerDossier(selectedDossier!!.dossierParent, true)
             }
         }
 
-        val rechercheTextBox = findViewById(R.id.searchEditText) as EditText
-        rechercheTextBox.addTextChangedListener(object : TextWatcher {
+        searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
             }
@@ -43,8 +41,8 @@ class ListeMotDePasse : AppCompatActivity() {
 
             override fun afterTextChanged(editable: Editable) {
                 val search = editable.toString()
-                if (!StringUtils.stringEmpty(search)) {
-                    val result = PasswordBusiness.recherche(search, PasswordBusiness.dossierMere!!)
+                if (search.isNotBlank()) {
+                    val result = PasswordBusiness.recherche(search, PasswordBusiness.dossierMere)
                     chargerRecherche(result)
                 } else {
                     chargerDossier(selectedDossier, true)
@@ -58,7 +56,7 @@ class ListeMotDePasse : AppCompatActivity() {
      * Affiche les résultats d'une recherche
      * @param listeResultat la liste des résultats de mots de passe
      */
-    fun chargerRecherche(listeResultat: List<MotDePasse>) {
+    fun chargerRecherche(listeResultat: MutableList<MotDePasse>) {
         val dossierTmp = Dossier()
         dossierTmp.titre = "Recherche" //TODO internationaliser
         dossierTmp.listeMotDePasse = listeResultat
@@ -72,16 +70,16 @@ class ListeMotDePasse : AppCompatActivity() {
      */
     fun chargerDossier(dossier: Dossier?, changeSelectedDossier: Boolean) {
         val titreDossier = findViewById(R.id.folderTextView) as TextView
-        titreDossier.text = dossier!!.titre
+        titreDossier.text = dossier?.titre ?:""
 
         val dossierParent = findViewById(R.id.parentFolderImageButton) as ImageButton
-        dossierParent.visibility = if (dossier.dossierParent != null) View.VISIBLE else View.INVISIBLE
+        dossierParent.visibility = if (dossier?.dossierParent != null) View.VISIBLE else View.INVISIBLE
 
         val dossierList = findViewById(R.id.folderListView) as ListView
         val mdpList = findViewById(R.id.mdpListView) as ListView
 
         //Chargement de la liste des dossiers
-        val adapter = FolderAdapter(this@ListeMotDePasse, if (dossier.sousDossier!!.isNotEmpty()) dossier.sousDossier!! else ArrayList())
+        val adapter = FolderAdapter(this@ListeMotDePasse, if (dossier?.sousDossier?.isNotEmpty() == true) dossier.sousDossier else ArrayList())
         dossierList.adapter = adapter
 
         dossierList.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
@@ -90,7 +88,7 @@ class ListeMotDePasse : AppCompatActivity() {
         }
 
         //Chargement de la liste des mots de passe
-        val mdpAdapter = MotDePasseAdapter(this@ListeMotDePasse, if (dossier.listeMotDePasse!!.isNotEmpty()) dossier.listeMotDePasse!! else ArrayList())
+        val mdpAdapter = MotDePasseAdapter(this@ListeMotDePasse, if (dossier?.listeMotDePasse?.isNotEmpty() == true) dossier.listeMotDePasse else ArrayList())
         mdpList.adapter = mdpAdapter
         mdpList.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
             val item = adapterView.getItemAtPosition(i) as MotDePasse
