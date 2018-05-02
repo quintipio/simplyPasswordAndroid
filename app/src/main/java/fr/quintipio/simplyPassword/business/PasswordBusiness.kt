@@ -4,10 +4,11 @@ import fr.quintipio.simplyPassword.com.ComFile
 import fr.quintipio.simplyPassword.model.Dossier
 import fr.quintipio.simplyPassword.model.MotDePasse
 import fr.quintipio.simplyPassword.util.CryptUtils
-import java.io.*
+import org.simpleframework.xml.core.Persister
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.util.*
-import javax.xml.bind.JAXBContext
-import javax.xml.bind.Marshaller
+
 
 /**
  * Classe de gestion des mots de passe
@@ -42,9 +43,8 @@ object PasswordBusiness {
         CryptUtils.decrypt(nouveauMotDePasse.toCharArray(), input, output)
 
         val xml = String(output.toByteArray(),charset("UTF-8"))
-        val context  = JAXBContext.newInstance(Dossier::class.java)
-        val marshaller = context.createUnmarshaller()
-        dossierMere = marshaller.unmarshal(StringReader(xml)) as Dossier
+        val serializer = Persister()
+        dossierMere = serializer.read(Dossier::class.java, xml)
         construireElementParent(dossierMere,null)
         fichier = nouveauFichier
         motDePasse = nouveauMotDePasse
@@ -56,7 +56,7 @@ object PasswordBusiness {
      */
     @Throws(Exception::class)
     fun save() {
-
+    /*
         val context  = JAXBContext.newInstance(Dossier::class.java)
         val marshaller = context.createMarshaller()
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true)
@@ -72,7 +72,7 @@ object PasswordBusiness {
         fichierNew.writeBytes(output.toByteArray())
         fichier!!.file.delete()
         fichierNew.file.renameTo(File(pathTmp))
-        modif = false
+        modif = false*/
     }
 
 

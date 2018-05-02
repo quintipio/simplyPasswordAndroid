@@ -18,18 +18,16 @@ class FolderAdapter(context: Context, dossiers: MutableList<Dossier>) : ArrayAda
             convertView = LayoutInflater.from(context).inflate(R.layout.row_folder, parent, false)
         }
 
-        var viewHolder: FolderViewHolder? = convertView!!.tag as FolderViewHolder
-        if (viewHolder == null) {
-            viewHolder = FolderViewHolder()
-            viewHolder.nomDossier = convertView.findViewById(R.id.nomDossier)
-            convertView.tag = viewHolder
+        var tag = convertView?.tag
+        if(tag == null) {
+            tag = FolderViewHolder()
+            tag.nomDossier = convertView?.findViewById(R.id.nomDossier)
+            convertView?.tag = tag
         }
-
         val dossier = getItem(position)
-
-        viewHolder.nomDossier!!.text = dossier!!.titre
-
-        return convertView
+        tag = tag as FolderViewHolder
+        tag.nomDossier!!.text = dossier!!.titre
+        return convertView!!
     }
 
     private inner class FolderViewHolder {

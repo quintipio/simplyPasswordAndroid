@@ -2,19 +2,19 @@ package fr.quintipio.simplyPassword.model
 
 
 
-import javax.xml.bind.annotation.XmlAccessType
-import javax.xml.bind.annotation.XmlAccessorType
-import javax.xml.bind.annotation.XmlRootElement
-import javax.xml.bind.annotation.XmlTransient
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.ElementList
+import org.simpleframework.xml.Root
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-data class Dossier (var titre: String = "",
-                    var listeMotDePasse: MutableList<MotDePasse> = mutableListOf(),
-                    var sousDossier: MutableList<Dossier> = mutableListOf(),
-                    var idIcone: Int = 0){
+@Root(strict = false,name = "dossier")
+@Element(name = "dossier")
+data class Dossier @JvmOverloads constructor (
+                    @field:Element(required = false, name = "titre") var titre: String = "",
+                    @field:ElementList(inline=true, required = false, entry = "listeMotDePasse", empty = true) var listeMotDePasse: MutableList<MotDePasse> = mutableListOf(),
+                    @field:ElementList(inline=true, required = false, entry = "sousDossier",empty = true) var sousDossier: MutableList<Dossier> = mutableListOf(),
+                    @field:Element(required=false,name = "idIcone") var idIcone: Int = 0){
 
-    @XmlTransient
+    @Transient
     var dossierParent: Dossier? = null
 
     override fun toString(): String {

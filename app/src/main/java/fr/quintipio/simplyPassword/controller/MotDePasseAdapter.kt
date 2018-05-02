@@ -18,20 +18,20 @@ class MotDePasseAdapter(context: Context, mdps: List<MotDePasse>) : ArrayAdapter
             convertView = LayoutInflater.from(context).inflate(R.layout.row_mdp, parent, false)
         }
 
-        var viewHolder: MotDePasseViewHolder? = convertView!!.tag as MotDePasseViewHolder
-        if (viewHolder == null) {
-            viewHolder = MotDePasseViewHolder()
-            viewHolder.titre = convertView.findViewById(R.id.titreMdp)
-            viewHolder.login = convertView.findViewById(R.id.loginMdp)
-            convertView.tag = viewHolder
+        var tag = convertView?.tag
+        if(tag == null) {
+            tag = MotDePasseViewHolder()
+            tag.titre = convertView?.findViewById(R.id.titreMdp)
+            tag.login = convertView?.findViewById(R.id.loginMdp)
+            convertView?.tag = tag
         }
-
         val motDePasse = getItem(position)
 
-        viewHolder.titre!!.text = motDePasse!!.titre
-        viewHolder.login!!.text = motDePasse.login
+        tag = tag as MotDePasseViewHolder
 
-        return convertView
+        tag.titre!!.text = motDePasse!!.titre
+        tag.login!!.text = motDePasse.login
+        return convertView!!
     }
 
 

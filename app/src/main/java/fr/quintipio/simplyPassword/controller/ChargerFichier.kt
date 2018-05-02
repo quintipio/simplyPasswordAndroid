@@ -25,6 +25,7 @@ class ChargerFichier : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_charger_fichier)
         fileButton.setOnClickListener { chargerFichier() }
         ChargerButton.setOnClickListener { dechiffrer() }
@@ -93,7 +94,7 @@ class ChargerFichier : AppCompatActivity() {
     private fun dechiffrer() {
         val mdp = MotDePasseTextField.text.toString()
         try {
-            PasswordBusiness.load(mdp, path!!)
+            PasswordBusiness.load(path!!,mdp)
             ErreurTextView.text = ""
 
             val settings = getSharedPreferences(ContexteAppli.sharedPrefKey, 0)
@@ -107,6 +108,7 @@ class ChargerFichier : AppCompatActivity() {
         } catch (ex: InvalidPasswordException) {
             ErreurTextView.setText(R.string.erreur_mauvais_mdp)
         } catch (e: Exception) {
+            System.out.print(e.stackTrace)
             ErreurTextView.setText(R.string.erreur_dechiffrement)
         }
 
